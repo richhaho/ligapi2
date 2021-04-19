@@ -1,0 +1,319 @@
+parameters:
+    pdfItemFormatMappings:
+        -
+            property: "name"
+            transformer: NULL
+            entitytypes: ['material', 'tool', 'keyy', 'order', 'consignment']
+            fieldtypes: ['item']
+        -
+            property: "manufacturerNumber"
+            transformer: NULL
+            entitytypes: ['material', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "manufacturerName"
+            transformer: NULL
+            entitytypes: ['material', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "itemNumber"
+            transformer: NULL
+            entitytypes: ['material', 'tool', 'keyy', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "barcode"
+            transformer: NULL
+            entitytypes: ['material', 'tool', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "permanentInventory"
+            transformer: NULL
+            entitytypes: ['material', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "unit"
+            transformer: NULL
+            entitytypes: ['material', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "unitAlt"
+            transformer: NULL
+            entitytypes: ['material', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "orderAmount"
+            transformer: NULL
+            entitytypes: ['material', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "unitConversion"
+            transformer: NULL
+            entitytypes: ['material', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "note"
+            transformer: NULL
+            entitytypes: ['material', 'tool', 'keyy', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "usableTill"
+            transformer: NULL
+            entitytypes: ['material', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "sellingPrice"
+            transformer: NULL
+            entitytypes: ['material', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "purchasingPrice"
+            transformer: NULL
+            entitytypes: ['tool', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "blecode"
+            transformer: NULL
+            entitytypes: ['tool', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "purchasingDate"
+            transformer: NULL
+            entitytypes: ['tool', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "amount"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\AmountFieldTransformer
+            entitytypes: ['keyy', 'order', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "address"
+            transformer: NULL
+            entitytypes: ['keyy']
+            fieldtypes: [ 'item' ]
+        -
+            property: "home"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\HomeFieldTransformer
+            entitytypes: ['tool', 'keyy']
+            fieldtypes: [ 'item' ]
+        -
+            property: "owner"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\OwnerFieldTransformer
+            entitytypes: ['tool', 'keyy']
+            fieldtypes: [ 'item' ]
+        -
+            property: "itemGroup"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\ItemGroupFieldTransformer
+            entitytypes: ['material', 'tool']
+            fieldtypes: [ 'item' ]
+        -
+            property: "permissionGroup"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\PermissionGroupFieldTransformer
+            entitytypes: ['material', 'tool', 'keyy']
+            fieldtypes: [ 'item' ]
+        -
+            property: "customField"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\CustomFieldTransformer
+            params: ["id"]
+            entitytypes: ['material', 'tool', 'keyy']
+            fieldtypes: [ 'item' ]
+        -
+            property: "mainLocationName"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\MainLocationNameFieldTransformer
+            entitytypes: ['material', 'consignment']
+            fieldtypes: [ 'item' ]
+        -
+            property: "mainLocationMinStock"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\MainLocationMinStockFieldTransformer
+            entitytypes: ['material']
+            fieldtypes: [ 'item' ]
+        -
+            property: "mainLocationMaxStock"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\MainLocationMaxStockFieldTransformer
+            entitytypes: ['material']
+            fieldtypes: [ 'item' ]
+        -
+            property: "prio1OrderSourceOrderNumber"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\Prio1OrderNumberFieldTransformer
+            entitytypes: ['material']
+            fieldtypes: [ 'item' ]
+        -
+            property: "prio1OrderSourceSupplierName"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\Prio1SupplierNameFieldTransformer
+            entitytypes: ['material']
+            fieldtypes: [ 'item' ]
+        -
+            property: "prio1OrderSourcePrice"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\Prio1PriceFieldTransformer
+            entitytypes: ['material']
+            fieldtypes: [ 'item' ]
+        -
+            property: "profileImage"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\ProfileImageFieldTransformer
+            entitytypes: ['material', 'tool', 'keyy']
+            fieldtypes: [ 'item' ]
+        -
+            property: "icon"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\IconFieldTransformer
+            entitytypes: ['material', 'tool', 'keyy']
+            fieldtypes: [ 'item' ]
+        -
+            property: "qrCode"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\QrCodeFieldTransformer
+            entitytypes: ['material', 'tool', 'keyy']
+            fieldtypes: [ 'item' ]
+        -
+            property: "category"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\CategoryFieldTransformer
+            entitytypes: ['material']
+            fieldtypes: [ 'item' ]
+        -
+            property: "companyLogo"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\CompanyLogoFieldTransformer
+            entitytypes: ['material', 'tool', 'keyy', 'order', 'consignment']
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "null"
+            transformer: NULL
+            entitytypes: ['material', 'tool', 'keyy', 'order', 'consignment']
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "fixedText"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\FixedTextFieldTransformer
+            params: ["content"]
+            entitytypes: ['material', 'tool', 'keyy', 'order', 'consignment']
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "currentDateTime"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\CurrentDateTimeFieldTransformer
+            entitytypes: ['material', 'tool', 'keyy', 'order', 'consignment']
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "companyName"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\CompanyNameFieldTransformer
+            entitytypes: ['material', 'tool', 'keyy', 'order', 'consignment']
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "position"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\PositionFieldTransformer
+            entitytypes: ['material', 'tool', 'keyy', 'order']
+            fieldtypes: [ 'item' ]
+        -
+            property: "orderNumber"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\OrderNumberFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'item' ]
+        -
+            property: "unitWithAmountPerUnit"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\UnitWithAmountPerUnitFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'item' ]
+        -
+            property: "supplierAddress"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\SupplierAddressFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "title"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\TitleFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "salutation"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\SalutationFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "userFullName"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\UserFullNameFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "userEmail"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\UserEmailFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "companyWebsite"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\CompanyWebsiteFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "companyPhone"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\CompanyPhoneFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "companyFax"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\CompanyFaxFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "companyLine"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\CompanyLineFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "companyDataBlock"
+            transformer: App\Services\Pdf\ItemFieldTransformers\Common\CompanyDataBlockFieldTransformer
+            entitytypes: [ 'order', 'consignment' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "customerNumber"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\CustomerNumberFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "materialOrderTitle"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\MaterialOrderNumberFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "orderDate"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\OrderDateFieldTransformer
+            entitytypes: [ 'order' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "consignmentNumber"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\ConsignmentNumberFieldTransformer
+            entitytypes: [ 'order', 'consignment' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "consignmentNote"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\ConsignmentNoteFieldTransformer
+            entitytypes: [ 'order', 'consignment' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "deliveryAddressArray"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\DeliveryAddressArrayFieldTransformer
+            entitytypes: [ 'consignment' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "deliveryDate"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\DeliveryDateFieldTransformer
+            entitytypes: [ 'consignment' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "consignmentDateTime"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\ConsignmentDateTimeFieldTransformer
+            entitytypes: [ 'consignment' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "consignmentContentSelection"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\ConsignmentContentSelectionFieldTransformer
+            entitytypes: [ 'consignment' ]
+            fieldtypes: [ 'common', 'item' ]
+        -
+            property: "nameWithNote"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\NameWithNoteFieldTransformer
+            entitytypes: [ 'material', 'tool', 'keyy' ]
+            fieldtypes: [ 'item' ]
+        -
+            property: "unitWithOrderNumber"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\UnitWithOrderNumberFieldTransformer
+            entitytypes: [ 'material' ]
+            fieldtypes: [ 'item' ]
+        -
+            property: "unitWithManufacturerNumber"
+            transformer: App\Services\Pdf\ItemFieldTransformers\MainEntities\UnitWithManufacturerNumberFieldTransformer
+            entitytypes: [ 'material' ]
+            fieldtypes: [ 'item' ]

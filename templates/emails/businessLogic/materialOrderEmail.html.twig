@@ -1,0 +1,15 @@
+<p>{{ salutation }}</p>
+
+<p>Anbei finden Sie unsere Bestellung.</p>
+<br />
+<p>Freundliche Grüsse,</p>
+<p>{{ user.firstName }} {{ user.lastName }}</p>
+<p>{{ company.name }}</p>
+
+{%  if company.street %}<p>{{ company.street }}<br />{% endif %}
+{%  if company.zip %}{{ company.zip }} {{ company.city }}</p>{% endif %}
+
+<p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+
+{%  if company.phone %}<p>Telefon: {{ company.phone }}<br />{% endif %}
+{%  if company.fax %}Fax: {{ company.fax }}</p>{% endif %}

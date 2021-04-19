@@ -1,0 +1,433 @@
+parameters:
+    importMappings:
+        # Old Version Import
+        -
+            property: "name"
+            title: "Name"
+            transformer: NULL
+        -
+            property: "currentStock"
+            title: "HL Bestand"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "minStock"
+            title: "HL Min"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "additionalCurrentStock"
+            title: "ZL Bestand"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "personalCurrentStock"
+            title: "PL Bestand"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "additionalCurrentStockAlt"
+            title: "ZL Bestand 2"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "currentStockAlt"
+            title: "HL Bestand 2"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "valueSum"
+            title: "Gesamt Wert"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "stockSum"
+            title: "Gesamt Bestand"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "purchasingValue"
+            title: "HB EK netto"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "changedAt"
+            title: "Geändert"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "sumStockAlt"
+            title: "Gesamt Bestand 2"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "documents"
+            title: "Dokumente"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "materialStatus"
+            title: "Materialstatus"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "permanentInventory"
+            title: "Kategorie"
+            transformer: App\Services\Import\Transformers\Material\MaterialCategoryTransformer
+        -
+            property: "materialLocations"
+            title: "Hauptlager (HL)"
+            transformer: App\Services\Import\Transformers\Material\MainMaterialLocationTransformer
+        -
+            property: "orderStatus"
+            title: "Bestellstatus"
+            transformer: App\Services\Import\Transformers\Material\OrderStatusTransformer
+        -
+            property: "orderSources"
+            title: "Hauptbezugsquelle (HB)"
+            transformer: App\Services\Import\Transformers\Material\MainOrderSourceNameTransformer
+        -
+            property: "orderSources"
+            title: "HB Bestellnummer"
+            transformer: App\Services\Import\Transformers\Material\MainOrderSourceNameTransformer
+        -
+            property: "sellingPrice"
+            title: "VK netto"
+            transformer: App\Services\Import\Transformers\FloatTransformer
+        -
+            property: "orderStatus"
+            title: "Order Status"
+            transformer: NULL
+        -
+            property: "orderAmount"
+            title: "Bestellmenge"
+            transformer: App\Services\Import\Transformers\FloatTransformer
+        -
+            property: "itemGroup"
+            title: "Warengruppe"
+            transformer: App\Services\Import\Transformers\Material\ItemGroupTransformer
+        -
+            property: "manufacturerName"
+            title: "Hersteller"
+            transformer: NULL
+        -
+            property: "manufacturerNumber"
+            title: "Hersteller-Nr."
+            transformer: NULL
+        -
+            property: "note"
+            title: "Notiz"
+            transformer: NULL
+        -
+            property: "barcode"
+            title: "Barcode"
+            transformer: NULL
+        -
+            property: "usableTill"
+            title: "Verwendbar bis"
+            transformer: App\Services\Import\Transformers\DateTransformer
+        -
+            property: "unit"
+            title: "Einheit"
+            transformer: NULL
+        -
+            property: "unitAlt"
+            title: "Einheit 2"
+            transformer: NULL
+        -
+            property: "unitConversion"
+            title: "Umrechnung Einheiten"
+            transformer: App\Services\Import\Transformers\FloatTransformer
+        -
+            property: "altScannerIds"
+            title: "ID"
+            transformer: App\Services\Import\Transformers\AltScannerIds
+        -
+            property: "permissionGroup"
+            title: "Berechtigungsgruppe"
+            transformer: App\Services\Import\Transformers\PermissionGroupTransformer
+        # Todo: Enable profileImageUrl, as soon as the rest works
+        -
+            property: "profileImageUrl"
+            title: "Link Profilbild"
+            transformer: App\Services\Import\Transformers\NullTransformer
+
+        # User
+        -
+            property: "firstName"
+            title: "firstName"
+            transformer: App\Services\Import\Transformers\FirstNameTransformer
+        -
+            property: "lastName"
+            title: "lastName"
+            transformer: App\Services\Import\Transformers\LastNameTransformer
+
+        -
+            property: "email"
+            title: "email"
+            transformer: NULL
+
+        # Supplier
+        -
+            property: "name"
+            title: "name"
+            transformer: NULL
+        -
+            property: "webShopLogin"
+            title: "shopLogin"
+            transformer: NULL
+        -
+            property: "customerNumber"
+            title: "customerNumber"
+            transformer: NULL
+        -
+            property: "street"
+            title: "street"
+            transformer: NULL
+        -
+            property: "zipCode"
+            title: "zipCode"
+            transformer: NULL
+        -
+            property: "city"
+            title: "city"
+            transformer: NULL
+        -
+            property: "country"
+            title: "country"
+            transformer: NULL
+        -
+            property: "email"
+            title: "email"
+            transformer: NULL
+        -
+            property: "phone"
+            title: "phone"
+            transformer: NULL
+        -
+            property: "fax"
+            title: "fax"
+            transformer: NULL
+        -
+            property: "emailSalutation"
+            title: "emailSalutation"
+            transformer: NULL
+
+        # Location
+        -
+            property: "name"
+            title: "code"
+            transformer: NULL
+        -
+            property: "note"
+            title: "note"
+            transformer: NULL
+        -
+            property: "currentStock"
+            title: "currentStock"
+            transformer: NULL
+        -
+            property: "currentStockAlt"
+            title: "currentStockAlt"
+            transformer: NULL
+        -
+            property: "minStock"
+            title: "minStock"
+            transformer: NULL
+        -
+            property: "locationCategory"
+            title: "locationLinkType"
+            transformer: App\Services\Import\Transformers\LocationCategoryTransformer
+        -
+            property: "material"
+            title: "materialId"
+            transformer: App\Services\Import\Transformers\MaterialIdTransformer
+        -
+            property: "tool"
+            title: "toolId"
+            transformer: App\Services\Import\Transformers\ToolIdTransformer
+        -
+            property: "keyy"
+            title: "keyyId"
+            transformer: App\Services\Import\Transformers\KeyyIdTransformer
+
+        # Keyy
+        -
+            property: "amount"
+            title: "amount"
+            transformer: App\Services\Import\Transformers\AmountTransformer
+        -
+            property: "address"
+            title: "address"
+            transformer: NULL
+        -
+            property: "home"
+            title: "home"
+            transformer: NULL
+        -
+            property: "owner"
+            title: "owner"
+            transformer: NULL
+        -
+            property: "altScannerIds"
+            title: "originalId"
+            transformer: App\Services\Import\Transformers\OriginalIdTransformer
+
+        # Tool
+        -
+            property: "barcode"
+            title: "barcode"
+            transformer: NULL
+        -
+            property: "purchasingPrice"
+            title: "purchasingPrice"
+            transformer: App\Services\Import\Transformers\FloatTransformer
+        -
+            property: "manufacturerNumber"
+            title: "numberManufacturer"
+            transformer: NULL
+        -
+            property: "manufacturerName"
+            title: "manufacturer"
+            transformer: NULL
+        -
+            property: "blecode"
+            title: "blecode"
+            transformer: NULL
+        -
+            property: "itemGroup"
+            title: "toolGroupName"
+            transformer: App\Services\Import\Transformers\Tool\ItemGroupTransformer
+        -
+            property: "purchasingDate"
+            title: "purchasingDate"
+            transformer: App\Services\Import\Transformers\DateTransformer
+        -
+            property: "isBroken"
+            title: "toolStatus"
+            transformer: App\Services\Import\Transformers\Tool\IsBrokenTransformer
+
+        # Material
+        -
+            property: "manufacturerNumber"
+            title: "manufacturerCode"
+            transformer: NULL
+        -
+            property: "manufacturerNumber"
+            title: "manufacturerCode"
+            transformer: NULL
+        -
+            property: "permanentInventory"
+            title: "category"
+            transformer: App\Services\Import\Transformers\Material\MaterialCategoryTransformer
+        -
+            property: "unit"
+            title: "unit"
+            transformer: NULL
+        -
+            property: "unitAlt"
+            title: "unitAlt"
+            transformer: NULL
+        -
+            property: "orderAmount"
+            title: "orderAmount"
+            transformer: NULL
+        -
+            property: "manufacturerName"
+            title: "manufacturerName"
+            transformer: NULL
+        -
+            property: "unitConversion"
+            title: "unitConversion"
+            transformer: App\Services\Import\Transformers\FloatTransformer
+        -
+            property: "sellingPrice"
+            title: "sellingPrice"
+            transformer: App\Services\Import\Transformers\FloatTransformer
+        -
+            property: "itemGroup"
+            title: "itemGroup"
+            transformer: App\Services\Import\Transformers\Material\ItemGroupTransformer
+        -
+            property: "id"
+            title: "id"
+            transformer: App\Services\Import\Transformers\NullTransformer
+        -
+            property: "itemGroup"
+            title: "materialGroupName"
+            transformer: App\Services\Import\Transformers\Material\ItemGroupTransformer
+        -
+            property: "usableTill"
+            title: "usableTill"
+            transformer: App\Services\Import\Transformers\DateTransformer
+
+        # OrderSource
+        -
+            property: "price"
+            title: "price"
+            transformer: NULL
+        -
+            property: "amountPerPurchaseUnit"
+            title: "amountPerPuchaseUnit"
+            transformer: NULL
+        -
+            property: "orderNumber"
+            title: "orderNumber"
+            transformer: NULL
+        -
+            property: "supplier"
+            title: "supplierName"
+            transformer: App\Services\Import\Transformers\SupplierNameTransformer
+
+        # File
+        -
+            property: "originalPath"
+            title: "absolutePath"
+            transformer: NULL
+        -
+            property: "docType"
+            title: "docType"
+            transformer: NULL
+        -
+            property: "mimeType"
+            title: "mimeType"
+            transformer: NULL
+        -
+            property: "displayedName"
+            title: "displayedName"
+            transformer: NULL
+        -
+            property: "size"
+            title: "size"
+            transformer: App\Services\Import\Transformers\FloatTransformer
+
+        # StockChange
+        -
+            property: "originalId"
+            title: "stockChangeId"
+            transformer: NULL
+        -
+            property: "amountAlt"
+            title: "amountAlt"
+            transformer: App\Services\Import\Transformers\FloatTransformer
+        -
+            property: "newCurrentStock"
+            title: "newCurrentStock"
+            transformer: App\Services\Import\Transformers\FloatTransformer
+        -
+            property: "newCurrentStockAlt"
+            title: "newCurrentStockAlt"
+            transformer: App\Services\Import\Transformers\FloatTransformer
+        -
+            property: "materialLocationId"
+            title: "materialLocationId"
+            transformer: NULL
+        -
+            property: "createdAt"
+            title: "createdAt"
+            transformer: App\Services\Import\Transformers\DateTimeTransformer
+        -
+            property: "user"
+            title: "createdByEmail"
+            transformer: App\Services\Import\Transformers\UserEmailTransformer
+
+        # Project
+        -
+            property: "customer"
+            title: "customerName"
+            transformer: App\Services\Import\Transformers\CustomerNameTransformer
+
+        # Customer
+        -
+            property: "zip"
+            title: "zip"
+            transformer: NULL
+
+

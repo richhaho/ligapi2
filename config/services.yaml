@@ -1,0 +1,125 @@
+imports:
+    - {resource: importFormats.yaml}
+    - {resource: pdfItemFormats.yaml}
+
+services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            bool $debug: '%kernel.debug%'
+            iterable $pdfSpecifications: !tagged_iterator 'app.pdfSpecification'
+            iterable $changeLogGenerators: !tagged_iterator 'app.change_log_generators'
+            iterable $readers: !tagged_iterator 'app.crawler_readers'
+            string $encryptionKeyPath: '%kernel.project_dir%/config/secrets/dev/dev.encrypt.public.php'
+            string $decryptionKeyPath: '%kernel.project_dir%/config/secrets/dev/dev.decrypt.private.php'
+            string $publicPath: '%kernel.project_dir%/public'
+            string $cleverreachClientId: '%env(resolve:CLEVERREACH_CLIENT_ID)%'
+            string $cleverreachClientSecret: '%env(resolve:CLEVERREACH_CLIENT_SECRET)%'
+            string $apiUrl: '%env(resolve:API_URL)%'
+            string $frontendUrl: '%env(resolve:FRONTEND_URL)%'
+            string $crawlerClient: '%env(resolve:CRAWLER_CLIENT)%'
+            array $importMappings: '%importMappings%'
+            array $pdfItemFormatMappings: '%pdfItemFormatMappings%'
+            string $onesignalAppId: '%env(ONESIGNAL_APP_ID)%'
+            string $onesignalApiToken: '%env(ONESIGNAL_API_TOKEN)%'
+
+    _instanceof:
+        App\Services\ChangeLog\ChangeLogGeneratorInterface:
+            tags: ['app.change_log_generators']
+        App\Services\Crawler\ReaderInterface:
+            tags: ['app.crawler_readers']
+        App\Repository\Query\ListFilterFragment:
+            tags: ['app.filter.fragment']
+        App\Api\Mapper\MapperInterface:
+            tags: ['app.mapper']
+        App\Api\Mapper\MapperWithBatchUpdateInterface:
+            tags: ['app.mapperWithBatchUpdate']
+        App\Services\Import\Transformers\TransformerInterface:
+            tags: ['app.transformer']
+        App\Services\Pdf\ItemFieldTransformers\ItemFieldTransformerInterface:
+            tags: ['app.itemFieldTransformers']
+        App\Services\Import\FileReaders\FileReaderInterface:
+            tags: ['app.fileReader']
+        App\Services\Pdf\DefaultPdfSpecifications\PdfSpecificationInterface:
+            tags: ['app.pdfSpecification']
+        App\EventListener\AdditionalChangeProcessors\AdditionalChangeProcessorInterface:
+            tags: ['app.additionalChangeProcessor']
+
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    App\Serializer\DefaultApiNormalizer:
+        tags: [{name: serializer.normalizer, priority: -1}]
+
+    acme_api.event.authentication_success_listener:
+        class: App\EventListener\AuthenticationSuccessListener
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
+
+    Qipsius\TCPDFBundle\Controller\TCPDFController: '@qipsius.tcpdf'
+
+    Symfony\Component\Panther\Client:
+        factory: ['Symfony\Component\Panther\Client', 'createFirefoxClient']
+#        arguments:
+#            - '%env(CHROMEDRIVER_URL)%'
+#            - ['--headless', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage', '--disable-popup-blocking', '--disable-application-cache', '--disable-web-security', '--start-maximized', '--ignore-certificate-errors', '--window-size=1920,1080'] #            '--headless',
+#            - {'connection_timeout_in_ms': 60000, 'request_timeout_in_ms': 60000}
+
+    Symfony\Component\Mime\MimeTypesInterface: '@mime_types'
+
+    Imagine\Image\ImagineInterface:
+        class: Imagine\Gd\Imagine
+
+    monolog.formatter.stack_trace:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            - "[%%datetime%%] [User: %%extra.userId%%] [Company: %%extra.companyId%%] %%channel%%.%%level_name%%: %%message%% %%context%%\n[%%extra.url%%] [%%extra.method%%] [%%extra.all%%] \n"
+        calls:
+            - [includeStacktraces, [true]]
+
+    App\Logger\SessionRequestProcessor:
+        tags:
+            - { name: monolog.processor }
+
+    App\EventListener\ErrorListener:
+        decorates: exception_listener
+        arguments: ['%kernel.error_controller%', '@logger', '%kernel.debug%']
+
+    App\Repository\Query\ListQueryBuilder:
+        arguments:
+            $fragments: !tagged_iterator 'app.filter.fragment'
+
+    App\Api\Mapper\CommonMapper:
+        arguments:
+            $mappers: !tagged_iterator 'app.mapper'
+
+    App\Services\BatchChanges\Handler\BatchUpdateHandler:
+        arguments:
+            $mappersWithBatchUpdate: !tagged_iterator 'app.mapperWithBatchUpdate'
+
+    App\Services\Import\DtoService:
+        arguments:
+            $transformers: !tagged_iterator 'app.transformer'
+
+    App\Services\Pdf\PdfService:
+        arguments:
+            $itemFieldTransformers: !tagged_iterator 'app.itemFieldTransformers'
+
+    App\Services\Import\CreateDtoFromFileService:
+        arguments:
+            $fileReaders: !tagged_iterator 'app.fileReader'
+
+    App\DataFixtures\LabelFixtures:
+        arguments:
+            $pdfSpecifications: !tagged_iterator 'app.pdfSpecification'
+
+    App\EventListener\ChangeListener:
+        arguments:
+            $additionalChangeProcessors: !tagged_iterator 'app.additionalChangeProcessor'

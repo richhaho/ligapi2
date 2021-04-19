@@ -1,0 +1,54 @@
+framework:
+    messenger:
+        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
+        failure_transport: failed
+
+        transports:
+            # https://symfony.com/doc/current/messenger.html#transport-configuration
+            # async: '%env(MESSENGER_TRANSPORT_DSN)%'
+            failed:
+                dsn: 'doctrine://default?queue_name=failed'
+                retry_strategy:
+                    max_retries: 1000
+                    delay: 100
+                    multiplier: 1
+            # sync: 'sync://'
+            crawler:
+                dsn: 'doctrine://default?queue_name=crawler'
+                retry_strategy:
+                    max_retries: 2
+                    # milliseconds delay
+                    delay: 2000
+                    # causes the delay to be higher before each retry
+                    # e.g. 1 second delay, 2 seconds, 4 seconds
+                    multiplier: 2
+                    max_delay: 0
+                    # override all of this with a service that
+                    # implements Symfony\Component\Messenger\Retry\RetryStrategyInterface
+                    # service: null
+            batch:
+                dsn: 'doctrine://default?queue_name=batch'
+                retry_strategy:
+                    max_retries: 0
+                    # milliseconds delay
+                    delay: 2000
+                    # causes the delay to be higher before each retry
+                    # e.g. 1 second delay, 2 seconds, 4 seconds
+                    multiplier: 2
+                    max_delay: 0
+                    # override all of this with a service that
+                    # implements Symfony\Component\Messenger\Retry\RetryStrategyInterface
+                    # service: null
+
+        routing:
+            # Route your messages to the transports
+            'App\Services\Crawler\Messages\UpdatePrices': crawler
+            'App\Services\Crawler\Messages\GetMaterialData': crawler
+            'App\Services\Crawler\Messages\OrderMaterials': crawler
+            'App\Services\Crawler\Messages\ProcessDirectOrderPositionResults': crawler
+            'App\Services\BatchChanges\Messages\PatchMany': batch
+            'App\Services\BatchChanges\Messages\CreateMany': batch
+
+        buses:
+            default:
+                default_middleware: allow_no_handlers

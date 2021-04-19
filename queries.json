@@ -1,0 +1,74 @@
+{
+    "listMaterials": {
+        "id": "string",
+        "permanentInventory": "boolean",
+        "name": "string",
+        "itemNumber": "string",
+        "manufacturerNumber": "string",
+        "manufacturerName": "string",
+        "orderStatus": "string",
+        "itemGroup": "string",
+        "permissionGroup": "string",
+        "crawlerStatus": "string",
+        "material.materialLocations as locations": [
+            {
+                "name": "location.name",
+                "currentStock": "float",
+                "stockMin": "float",
+                "locationType": "string"
+            }
+        ],
+        "material.orderSources": [
+            {
+                "orderNumber": "string",
+                "supplier": {
+                    "name": "string",
+                    "connectedSupplierName": "string"
+                },
+                "price": "float"
+            }
+        ],
+        "nextTaskDue": "string",
+        "taskCount": "integer",
+        "profileImage": "string",
+        "thumb": "string",
+        "customFields": [
+            {
+                "name": "string",
+                "type": "string",
+                "value": "string | boolean",
+                "options": ["string"]
+            }
+        ]
+    },
+    "listTools": {
+
+    },
+    "listKeyys": {
+
+    },
+    "listSuppliers": {
+
+    },
+    "listTasks": {
+
+    },
+    "listUsers": {
+
+    },
+    "listCustomers": {
+
+    },
+    "listProjects": {
+
+    },
+    "detailsMaterial": {
+
+    },
+    "detailsTool": {
+
+    },
+    "detailsKeyy": {
+
+    }
+}

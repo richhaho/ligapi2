@@ -1,0 +1,15 @@
+monolog:
+    handlers:
+        main:
+            formatter: monolog.formatter.stack_trace
+            type: rotating_file
+            path: "%kernel.logs_dir%/main_%kernel.environment%.log"
+            level: error
+            channels: [ "!event" ]
+#        nested:
+#            type:  rotating_file
+#            path: "%kernel.logs_dir%/nested_%kernel.environment%.log"
+#            level: debug
+        console:
+            type: console
+            process_psr_3_messages: false
